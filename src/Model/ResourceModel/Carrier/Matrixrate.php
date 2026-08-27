@@ -212,8 +212,9 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             $postcode = trim(str_replace("-","", $postcode));
         }
 
-        if (strpos($postcode, ' ') !== false) {
-            $postcode = str_replace(" ", "", $postcode);
+        if ($request->getDestCountryId() == 'SE') {
+            #  Sweden can have a space, let's remove it
+             $postcode = str_replace(" ", "", $postcode);
         }
 
         if ($zipRangeSet && is_numeric($postcode)) {
